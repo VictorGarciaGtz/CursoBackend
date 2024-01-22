@@ -1,5 +1,6 @@
 using CursoBackend.DTOs;
 using CursoBackend.Models;
+using CursoBackend.Repository;
 using CursoBackend.Services;
 using CursoBackend.Validators;
 using FluentValidation;
@@ -23,6 +24,9 @@ builder.Services.AddHttpClient<IPostsService, PostsService>(c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["BaseUrlPosts"]);
 });
+
+//Repository
+builder.Services.AddScoped<IRepository<Beer>, BeerRepository>();
 
 //Entity Framework
 builder.Services.AddDbContext<StoreContext>(options =>
